@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  zoo-app:
+    extends: 
+      file: ./zoo-app/docker-compose.yml
+      service: zoo-app
+
+  cat-food-app:
+    extends: 
+      file: ./cat-food-app/docker-compose.yml
+      service: cat-food-app
+
+  pact-broker-postgres:
+    image: postgres
+    healthcheck:
+      test: psql postgres --command "select 1" -U postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-volume:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: postgres
+
+  pact-broker:
+    image: pactfoundation/pact-broker
+    build: .
+    ports:
+      - "9292:9292"
+    depends_on:
+      - pact-broker-postgres
+    environment:
+      PACT_BROKER_DATABASE_USERNAME: postgres
+      PACT_BROKER_DATABASE_PASSWORD: password
+      PACT_BROKER_DATABASE_HOST: pact-broker-postgres
+      PACT_BROKER_DATABASE_NAME: postgres
+      PACT_BROKER_LOG_LEVEL: DEBUG
+
+volumes:
+  bundle-cache:
+  postgres-volume:
