@@ -1,3 +1,6 @@
 [submodule "zoo-app"]
 	path = zoo-app
 	url = git@github.com:TallPaulRyan/zoo-app.git
+[submodule "cat-food-app"]
+	path = cat-food-app
+	url = git@github.com:TallPaulRyan/cat-food-app.git
