@@ -1,0 +1,3 @@
+[submodule "zoo-app"]
+	path = zoo-app
+	url = git@github.com:TallPaulRyan/zoo-app.git
