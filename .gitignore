@@ -1,2 +1,4 @@
-zoo-app
-cat-food-app
+zoo-app/
+cat-food-app/
+reports/pacts/
+log/
