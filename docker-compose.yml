@@ -20,7 +20,7 @@ services:
       dockerfile: ./Dockerfile
     volumes:
       - .:/app
-      - bundle-cache:/usr/local/bundle
+      - animal-service-bundle-cache:/usr/local/bundle
 
   pact-broker-postgres:
     container_name: pact-broker-postgres
@@ -52,5 +52,7 @@ services:
       PACT_BROKER_LOG_LEVEL: DEBUG
 
 volumes:
-  bundle-cache:
+  animal-service-bundle-cache:
+  zoo-app-bundle-cache:
+  cat-food-app-bundle-cache:
   postgres-volume:
