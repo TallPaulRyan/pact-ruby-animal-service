@@ -4,7 +4,7 @@ Pact.service_provider "Animal Service" do
   honours_pacts_from_pact_broker do
     # Base URL of pact broker is mandatory
     # basic auth username/password and token are optional parameters
-    pact_broker_base_url 'http://pact-ruby-demo-pact-broker-1:9292'
+    pact_broker_base_url 'http://pact-broker:9292'
     verbose true # Set this to true to see the HTTP requests and responses logged
     
     # Publishing verification results to broker

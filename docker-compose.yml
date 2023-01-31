@@ -11,7 +11,19 @@ services:
       file: ./cat-food-app/docker-compose.yml
       service: cat-food-app
 
+  animal-service:
+    container_name: animal-service
+    tty: true
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - .:/app
+      - bundle-cache:/usr/local/bundle
+
   pact-broker-postgres:
+    container_name: pact-broker-postgres
     image: postgres
     healthcheck:
       test: psql postgres --command "select 1" -U postgres
@@ -25,6 +37,7 @@ services:
       POSTGRES_DB: postgres
 
   pact-broker:
+    container_name: pact-broker
     image: pactfoundation/pact-broker
     build: .
     ports:
