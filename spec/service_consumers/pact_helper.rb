@@ -12,7 +12,7 @@ Pact.service_provider "Animal Service" do
     publish_verification_results true
 
     # These are Provider side settings...Need to understand this better
-    app_version "1.0.1"
+    app_version "1.0.2"
 
     # This seems to do nothing?
     app_version_branch = "main_test"
