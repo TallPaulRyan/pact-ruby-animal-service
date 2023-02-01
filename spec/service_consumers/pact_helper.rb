@@ -1,4 +1,5 @@
 require_relative "./provider_states_for_zoo_app"
+require_relative "./provider_states_for_cat_food_app"
 
 Pact.service_provider "Animal Service" do
   honours_pacts_from_pact_broker do
