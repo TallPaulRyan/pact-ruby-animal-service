@@ -15,14 +15,14 @@ Pact.service_provider "Animal Service" do
     app_version "1.0.2"
 
     # This seems to do nothing?
-    app_version_branch = "main_test"
+    # app_version_branch = "main_test"
 
     # Reference: https://docs.pact.io/pact_broker/advanced_topics/consumer_version_selectors
     # Need to understand this better
-    consumer_version_selectors [
-      { "branch": "learning"},
-      { "latest": true }
-    ]
+    # consumer_version_selectors [
+    #   { "branch": "learning"},
+    #   { "latest": true }
+    # ]
 
     # enable_pending true # See docs below
     # include_wip_pacts_since "2020-01-01" # See docs below

@@ -39,5 +39,4 @@ Pact.provider_states_for "Zoo App" do
       allow(AnimalService::AnimalRepository).to receive(:find_seahawk_by_name).and_raise("Kawww!!!")
     end
   end
-
 end
