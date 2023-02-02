@@ -1,30 +1,36 @@
 require_relative "./provider_states_for_zoo_app"
 require_relative "./provider_states_for_cat_food_app"
 
-Pact.service_provider "Animal Service" do
+
+# The git commands are just for local testing, not needed for real CI
+provider_version = ENV['GIT_COMMIT'] || `git rev-parse --short --verify HEAD`.strip
+provider_branch = ENV['GIT_BRANCH'] || `git name-rev --name-only HEAD`.strip
+# publish_results = ENV['CI'] == 'true' # results should only be published from CI
+# Will publish locally for now
+publish_results = true
+# choose the appropriate credentials for your broker
+credentials = {
+  username: ENV['PACT_BROKER_USERNAME'],
+  password: ENV['PACT_BROKER_PASSWORD'],
+  token: ENV['PACT_BROKER_TOKEN']
+}.compact
+
+Pact.service_provider "example-provider" do
+  app_version provider_version
+  app_version_branch provider_branch
+  publish_verification_results publish_results
+
   honours_pacts_from_pact_broker do
-    # Base URL of pact broker is mandatory
-    # basic auth username/password and token are optional parameters
-    pact_broker_base_url 'http://pact-broker:9292'
-    verbose true # Set this to true to see the HTTP requests and responses logged
-    
-    # Publishing verification results to broker
-    publish_verification_results true
+    pact_broker_base_url 'http://pact-broker:9292', credentials
 
-    # These are Provider side settings...Need to understand this better
-    app_version "1.0.2"
+    consumer_version_selectors [
+        # { main_branch: true },
+        { matching_branch: false }, # Same branch name as consumer - probably won't work for us?
+        { deployed_or_released: true }
+    ]
 
-    # This seems to do nothing?
-    # app_version_branch = "main_test"
-
-    # Reference: https://docs.pact.io/pact_broker/advanced_topics/consumer_version_selectors
-    # Need to understand this better
-    # consumer_version_selectors [
-    #   { "branch": "learning"},
-    #   { "latest": true }
-    # ]
-
-    # enable_pending true # See docs below
-    # include_wip_pacts_since "2020-01-01" # See docs below
+    # Not clear what these do - disabling for now
+    # enable_pending true
+    # include_wip_pacts_since provider_branch == "main" ? "2020-01-01" : nil
   end
- end
+end
