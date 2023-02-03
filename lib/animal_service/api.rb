@@ -34,5 +34,13 @@ module AnimalService
       end
     end
 
+    get '/insects/:name' do
+      if (insect = AnimalRepository.find_insect_by_name(params[:name]))
+        content_type :json, :charset => 'utf-8'
+        insect.to_json
+      else
+        status 404
+      end
+    end
   end
 end

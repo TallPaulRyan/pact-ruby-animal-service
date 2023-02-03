@@ -45,4 +45,10 @@ Pact.provider_states_for "Zoo App" do
       allow(AnimalService::AnimalRepository).to receive(:find_seahawk_by_name).and_raise("Kawww!!!")
     end
   end
+
+  provider_state "there is an insect named Roy" do
+    set_up do
+      AnimalService::DATABASE[:animals].insert(name: 'Roy')
+    end
+  end
 end
