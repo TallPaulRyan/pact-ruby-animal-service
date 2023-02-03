@@ -23,6 +23,7 @@ Pact.service_provider "Animal Service" do
   honours_pacts_from_pact_broker do
     pact_broker_base_url 'http://pact-broker:9292', credentials
 
+    # Resource: https://docs.pact.io/pact_broker/advanced_topics/consumer_version_selectors
     consumer_version_selectors [
         { "branch": "insect_feature_part1" },
         # { main_branch: true },
