@@ -23,9 +23,9 @@ Pact.service_provider "Animal Service" do
   honours_pacts_from_pact_broker do
     pact_broker_base_url 'http://pact-broker:9292', credentials
 
+    # Resource: https://docs.pact.io/pact_broker/advanced_topics/consumer_version_selectors
     consumer_version_selectors [
-        { "branch": "seahawk_error" },
-        { "branch": "main" }
+        { "branch": "insect_feature_part1" },
         # { main_branch: true },
         # { matching_branch: true }, # Same branch name as consumer - probably won't work for us?
         # { deployed_or_released: true }
