@@ -15,7 +15,7 @@ credentials = {
   token: ENV['PACT_BROKER_TOKEN']
 }.compact
 
-Pact.service_provider "example-provider" do
+Pact.service_provider "Animal Service" do
   app_version provider_version
   app_version_branch provider_branch
   publish_verification_results publish_results
@@ -24,9 +24,11 @@ Pact.service_provider "example-provider" do
     pact_broker_base_url 'http://pact-broker:9292', credentials
 
     consumer_version_selectors [
+        { "branch": "seahawk_error" },
+        { "branch": "main" }
         # { main_branch: true },
-        { matching_branch: false }, # Same branch name as consumer - probably won't work for us?
-        { deployed_or_released: true }
+        # { matching_branch: true }, # Same branch name as consumer - probably won't work for us?
+        # { deployed_or_released: true }
     ]
 
     # Not clear what these do - disabling for now
