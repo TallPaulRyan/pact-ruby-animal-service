@@ -3,7 +3,8 @@ source 'https://rubygems.org'
 group :development, :test do
   gem 'rspec'
   gem 'pact'
-  gem "pry-nav"
+  gem 'pact_broker-client'
+  gem 'pry-nav'
 end
 
 gem 'rake'
