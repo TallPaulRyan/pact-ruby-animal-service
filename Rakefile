@@ -11,7 +11,6 @@ task :deploy_to_halo do
     environment = 'halo'
     participant = 'Animal Service'
     provider_version = ENV['GIT_COMMIT'] || `git rev-parse --short --verify HEAD`.strip
-    # `pact-broker record-deployment --environment=#{environment} --pacticipant=#{participant} --version=#{provider_version} --broker-base-url=http://pact-broker:9292`
-    p "pact-broker record-deployment --environment=#{environment} --pacticipant='#{participant}' --version=#{provider_version} --broker-base-url=http://pact-broker:9292"
-    # p "Success! Recorded deployment of #{participant} to #{environment}!"
+    result = `pact-broker record-deployment --environment=#{environment} --pacticipant='#{participant}' --version=#{provider_version}`
+    puts result.strip
 end
