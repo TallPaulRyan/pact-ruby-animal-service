@@ -36,7 +36,13 @@ Pact.provider_states_for "Cat Food App" do
 
   provider_state "an error occurs retrieving a seahawk" do
     set_up do
-      # allow(AnimalService::AnimalRepository).to receive(:find_seahawk_by_name).and_raise("Kawww!!!")
+      allow(AnimalService::AnimalRepository).to receive(:find_seahawk_by_name).and_raise("Kawww!!!")
+    end
+  end
+
+  provider_state "there is an insect named Roy" do
+    set_up do
+      AnimalService::DATABASE[:animals].insert(name: 'Roy')
     end
   end
 

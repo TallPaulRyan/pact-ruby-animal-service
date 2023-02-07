@@ -5,7 +5,6 @@ require 'pact/tasks'
 task :default => 'pact:verify'
 
 namespace :env do
-
   desc 'list existing envs.'
   task :list do
     p "Listing exsiting environments via pact-broker list-environments."

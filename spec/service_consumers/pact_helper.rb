@@ -25,7 +25,8 @@ Pact.service_provider "Animal Service" do
 
     # Resource: https://docs.pact.io/pact_broker/advanced_topics/consumer_version_selectors
     consumer_version_selectors [
-        { "branch": "insect_feature_part1" },
+        { "branch": "main", "consumer": "Zoo App" },
+        { "branch": "fix_seahawk_missing_error", "consumer": "Cat Food App" },
         # { main_branch: true },
         # { matching_branch: true }, # Same branch name as consumer - probably won't work for us?
         # { deployed_or_released: true }
