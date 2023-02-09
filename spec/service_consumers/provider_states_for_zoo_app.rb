@@ -51,4 +51,10 @@ Pact.provider_states_for "Zoo App" do
       AnimalService::DATABASE[:animals].insert(name: 'Roy')
     end
   end
+
+  provider_state "there is an insect named Tim" do
+    set_up do
+      AnimalService::DATABASE[:animals].insert(name: 'Tim')
+    end
+  end
 end
