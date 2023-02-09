@@ -27,4 +27,22 @@ namespace :env do
     result = `pact-broker record-deployment --environment=#{args[:env]} --pacticipant='#{participant}' --version=#{provider_version}`
     puts result.strip
   end
+
+  desc 'can-i-deploy'
+  task :canideploylatest, [:env] do |t, args|
+    pacticipant = 'Animal Service'
+    puts "pact-broker can-i-deploy --pacticipant='#{pacticipant}' --latest --to-environment=#{args[:env]}"
+    result = `pact-broker can-i-deploy --pacticipant='#{pacticipant}' --latest --to-environment=#{args[:env]}`
+    puts result.strip
+  end
+
+  desc 'can-i-deploy'
+  task :canideployversion, [:env,:version] do |t, args|
+    pacticipant = 'Animal Service'
+    puts "pact-broker can-i-deploy --pacticipant='#{pacticipant}' --version=#{args[:version]} --to-environment=#{args[:env]}"
+    result = `pact-broker can-i-deploy --pacticipant='#{pacticipant}' --version=#{args[:version]} --to-environment=#{args[:env]}`
+    puts result.strip
+  end
+
+
 end
